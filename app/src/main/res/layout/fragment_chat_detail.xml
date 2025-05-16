@@ -50,7 +50,9 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@drawable/ic_send"
-                android:background="?attr/selectableItemBackgroundBorderless" />
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="ContentDescription" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
     </com.google.android.material.textfield.TextInputLayout>

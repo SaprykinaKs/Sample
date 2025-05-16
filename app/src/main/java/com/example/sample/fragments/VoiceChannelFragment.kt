@@ -39,7 +39,6 @@ class VoiceChannelFragment : Fragment() {
         binding.voiceChannelRecyclerView.adapter = VoiceChannelAdapter(channels) { channel ->
             findNavController().navigate(
                 R.id.action_voice_to_call,
-//                bundleOf("channelId" to channel.id)
                 Bundle().apply {
                     putString("channelId", channel.id)
                     putString("channelName", channel.name)

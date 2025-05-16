@@ -11,7 +11,6 @@ data class Message(
     val type: MessageType = MessageType.TEXT,
     val status: MessageStatus = MessageStatus.SENT,
     val isOutgoing: Boolean = false,
-//    val reactions: List<String> = emptyList(),
     val imageUrl: String? = null
 ) {
     enum class MessageType {

@@ -8,10 +8,25 @@
     <string name="search_chats">Поиск чатов</string>
     <string name="send">Отправить</string>
     <string name="text_message">Написать сообщение</string>
-    <string name="copy">Копировать</string>
+    <string name="copy_mes">Копировать</string>
     <string name="delete">Удалить</string>
     <string name="download">Скачать</string>
     <string name="downloading_image">Загрузка изображения</string>
-    <string name="downloading_image_description">Пожалуйста, подождите...</string>
+    <string name="downloading_image_description">Пожалуйста, подождите..</string>
     <string name="attach_image">Прикрепить изображение</string>
+    <string name="connected">Подключено</string>
+    <string name="disconnected">Отключено</string>
+    <string name="end_call">Завершить</string>
+    <string name="audio_settings">Настройки аудио</string>
+    <string name="input_volume">Громкость микрофона</string>
+    <string name="output_volume">Громкость динамиков</string>
+    <string name="settings_audio">Настройки аудио</string>
+    <string name="volume_mic">Громкость микрофона</string>
+    <string name="volume_speaker">Громкость динамиков</string>
+    <string name="settings">Настройки</string>
+    <string name="notification">Уведомления</string>
+    <string name="dark_theme">Темная тема</string>
+    <string name="exit">Выйти</string>
+    <string name="chats">Чаты</string>
+    <string name="voice">Голос</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.sample.fragments
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -11,6 +12,7 @@ import android.widget.Switch
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.example.sample.R
+import androidx.core.content.edit
 
 class SettingsFragment : Fragment() {
 
@@ -27,6 +29,7 @@ class SettingsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_settings, container, false)
     }
 
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -40,7 +43,7 @@ class SettingsFragment : Fragment() {
 
         // Обработчик уведомлений
         notificationsSwitch.setOnCheckedChangeListener { _, isChecked ->
-            sharedPreferences.edit().putBoolean("notifications_enabled", isChecked).apply()
+            sharedPreferences.edit { putBoolean("notifications_enabled", isChecked) }
             // Здесь можно добавить логику включения/выключения уведомлений
         }
 
@@ -63,7 +66,7 @@ class SettingsFragment : Fragment() {
 
     private fun setDarkMode(enabled: Boolean) {
         // Сохраняем настройку
-        sharedPreferences.edit().putBoolean("dark_theme_enabled", enabled).apply()
+        sharedPreferences.edit { putBoolean("dark_theme_enabled", enabled) }
 
         // Устанавливаем тему
         AppCompatDelegate.setDefaultNightMode(

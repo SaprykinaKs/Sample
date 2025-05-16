@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Настройки"
+            android:text="@string/settings"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -25,21 +25,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Уведомления" />
+            android:text="@string/notification"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
 
         <Switch
             android:id="@+id/dark_mode_switch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Темная тема" />
+            android:text="@string/dark_theme"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
 
         <Button
             android:id="@+id/logout_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Выйти" />
+            android:text="@string/exit" />
 
     </LinearLayout>
 </ScrollView>

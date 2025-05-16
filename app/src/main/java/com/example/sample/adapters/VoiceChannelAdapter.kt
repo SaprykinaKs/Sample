@@ -1,5 +1,6 @@
 package com.example.sample.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +25,7 @@ class VoiceChannelAdapter(
         return VoiceChannelViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: VoiceChannelViewHolder, position: Int) {
         val channel = channels[position]
         holder.channelName.text = channel.name

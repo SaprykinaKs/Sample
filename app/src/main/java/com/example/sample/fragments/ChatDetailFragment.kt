@@ -20,12 +20,13 @@ import com.example.sample.databinding.FragmentChatDetailBinding
 import com.example.sample.models.Message
 import com.example.sample.models.Message.MessageStatus
 import com.example.sample.models.Message.MessageType
-import com.example.sample.viewmodels.ChatViewModel
+import com.example.sample.models.ChatViewModel
 import com.google.android.material.snackbar.Snackbar
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.util.Date
+import androidx.core.net.toUri
 
 class ChatDetailFragment : Fragment() {
     private var _binding: FragmentChatDetailBinding? = null
@@ -105,7 +106,7 @@ class ChatDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
+        viewModel = ViewModelProvider(this)[ChatViewModel::class.java]
         initRecyclerView()
         setupClickListeners()
 
@@ -152,7 +153,7 @@ class ChatDetailFragment : Fragment() {
 
     private fun downloadImage(url: String) {
         try {
-            val request = DownloadManager.Request(Uri.parse(url))
+            val request = DownloadManager.Request(url.toUri())
                 .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
                 .setTitle(getString(R.string.downloading_image))
                 .setDescription(getString(R.string.downloading_image_description))
@@ -167,7 +168,7 @@ class ChatDetailFragment : Fragment() {
     }
 
     private fun showFullScreenImage(imageUrl: String) {
-        // Реализуйте полноэкранный просмотр изображения
+        // реализация полноэкранного просмотра изображения
         showMessage("Просмотр изображения: $imageUrl")
     }
 

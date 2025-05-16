@@ -46,7 +46,7 @@ class MessageAdapter(
             PopupMenu(view.context, view).apply {
                 menuInflater.inflate(R.menu.message_menu, menu)
                 menu.findItem(R.id.menu_download)?.isVisible = onDownload != null
-                menu.findItem(R.id.menu_copy)?.isVisible = message.text?.isNotEmpty() == true
+                menu.findItem(R.id.menu_copy)?.isVisible = message.text.isNotEmpty() == true
                 setOnMenuItemClickListener { item ->
                     when (item.itemId) {
                         R.id.menu_copy -> onCopy().let { true }
@@ -89,7 +89,6 @@ class MessageAdapter(
                 MessageStatus.READ -> R.drawable.ic_read
                 MessageStatus.DELIVERED -> R.drawable.ic_delivered
                 MessageStatus.SENT -> R.drawable.ic_sent
-                else -> R.drawable.ic_sent
             })
 
             statusIcon.visibility = if (message.isOutgoing) View.VISIBLE else View.GONE
@@ -98,7 +97,7 @@ class MessageAdapter(
                 showMessageMenu(
                     view = v,
                     message = message,
-                    onCopy = { copyToClipboard(itemView.context, message.text ?: "") },
+                    onCopy = { copyToClipboard(itemView.context, message.text) },
                     onDelete = { onMessageDelete(message) },
                     onDownload = null
                 )
@@ -139,7 +138,6 @@ class MessageAdapter(
                     MessageStatus.READ -> R.drawable.ic_read
                     MessageStatus.DELIVERED -> R.drawable.ic_delivered
                     MessageStatus.SENT -> R.drawable.ic_sent
-                    else -> R.drawable.ic_sent
                 }
             )
 
@@ -171,7 +169,7 @@ class MessageAdapter(
                 showMessageMenu(
                     view = v,
                     message = message,
-                    onCopy = { message.text?.let { text -> copyToClipboard(itemView.context, text) } },
+                    onCopy = { copyToClipboard(itemView.context, message.text) },
                     onDelete = { onMessageDelete(message) },
                     onDownload = { message.imageUrl?.let(onImageDownload) }
                 )

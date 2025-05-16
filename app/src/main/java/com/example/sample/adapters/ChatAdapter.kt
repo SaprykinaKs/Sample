@@ -17,7 +17,7 @@ import java.util.Date
 import java.util.Locale
 
 class ChatAdapter(
-    var chats: List<Chat> = emptyList(),
+    private var chats: List<Chat> = emptyList(),
     private val onItemClick: (Chat) -> Unit
 ) : RecyclerView.Adapter<ChatAdapter.ChatViewHolder>() {
 

@@ -1,9 +1,8 @@
-package com.example.sample.viewmodels
+package com.example.sample.models
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.sample.models.Message
 
 class ChatViewModel : ViewModel() {
     private val _messages = MutableLiveData<List<Message>>()
