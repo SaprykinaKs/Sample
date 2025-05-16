@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Sample</string>
     <string name="chat_avatar">Аватар чата</string>
-    <string name="chanells">Каналы</string>
+    <string name="channels">Каналы</string>
     <string name="groups">Группы</string>
     <string name="private_">Личные</string>
     <string name="all_chats">Все</string>
@@ -20,9 +20,6 @@
     <string name="audio_settings">Настройки аудио</string>
     <string name="input_volume">Громкость микрофона</string>
     <string name="output_volume">Громкость динамиков</string>
-    <string name="settings_audio">Настройки аудио</string>
-    <string name="volume_mic">Громкость микрофона</string>
-    <string name="volume_speaker">Громкость динамиков</string>
     <string name="settings">Настройки</string>
     <string name="notification">Уведомления</string>
     <string name="dark_theme">Темная тема</string>

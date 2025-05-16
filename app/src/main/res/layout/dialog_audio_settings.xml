@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/settings_audio"
+        android:text="@string/audio_settings"
         android:textSize="20sp" />
 
     <SeekBar
@@ -21,7 +21,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/volume_mic" />
+        android:text="@string/input_volume" />
 
     <SeekBar
         android:id="@+id/output_volume"
@@ -33,6 +33,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/volume_speaker" />
+        android:text="@string/output_volume" />
 
 </LinearLayout>
