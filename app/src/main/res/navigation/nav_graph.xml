@@ -1,0 +1,60 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/chatFragment">
+
+    <!-- Основные фрагменты для нижнего меню -->
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.sample.fragments.ChatFragment"
+        android:label="Чаты"
+        tools:layout="@layout/fragment_chat">
+
+        <action
+            android:id="@+id/action_chat_to_detail"
+            app:destination="@id/chatDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/voiceFragment"
+        android:name="com.example.sample.fragments.VoiceChannelFragment"
+        android:label="Голос"
+        tools:layout="@layout/fragment_voice_channel">
+
+        <action
+            android:id="@+id/action_voice_to_call"
+            app:destination="@id/voiceCallFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.sample.fragments.SettingsFragment"
+        android:label="Настройки"
+        tools:layout="@layout/fragment_settings" />
+
+    <!-- Детальные фрагменты -->
+    <fragment
+        android:id="@+id/chatDetailFragment"
+        android:name="com.example.sample.fragments.ChatDetailFragment"
+        android:label="Детали чата"
+        tools:layout="@layout/fragment_chat_detail">
+
+        <argument
+            android:name="chatId"
+            android:defaultValue="null"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/voiceCallFragment"
+        android:name="com.example.sample.fragments.VoiceCallFragment"
+        android:label="Звонок"
+        tools:layout="@layout/fragment_voice_call">
+
+        <argument
+            android:name="channelId"
+            android:defaultValue="null"
+            app:argType="string" />
+    </fragment>
+</navigation>
