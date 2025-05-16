@@ -66,7 +66,10 @@ dependencies {
     // Kotlin Android Extensions (для синтетического представления)
     implementation ("androidx.core:core-ktx:1.12.0")
 
-    // Пример других актуальных зависимостей
-//    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.0")
-//    implementation ("androidx.activity:activity-ktx:1.10.1")
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+    implementation ("com.google.android.material:material:1.6.0")
+    implementation ("androidx.recyclerview:recyclerview:1.3.2")
+    implementation ("com.vanniktech:emoji:0.8.0")
+    implementation ("com.vanniktech:emoji-google:0.8.0")
 }

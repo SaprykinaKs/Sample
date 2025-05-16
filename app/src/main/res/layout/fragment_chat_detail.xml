@@ -10,8 +10,12 @@
         android:id="@+id/messages_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/message_input_layout"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_message" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/message_input_layout"
@@ -24,19 +28,30 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <ImageButton
+                android:id="@+id/attach_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_attach"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/attach_image" />
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/message_input"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Написать сообщение" />
+                android:hint="@string/text_message"
+                android:inputType="textCapSentences|textMultiLine"
+                android:maxLines="3" />
 
-            <com.google.android.material.button.MaterialButton
+            <ImageButton
                 android:id="@+id/send_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Отправить"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_send"
+                android:background="?attr/selectableItemBackgroundBorderless" />
+
         </androidx.appcompat.widget.LinearLayoutCompat>
     </com.google.android.material.textfield.TextInputLayout>
 

@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Sample</string>
+    <string name="chat_avatar">Аватар чата</string>
+    <string name="chanells">Каналы</string>
+    <string name="groups">Группы</string>
+    <string name="private_">Личные</string>
+    <string name="all_chats">Все</string>
+    <string name="search_chats">Поиск чатов</string>
+    <string name="send">Отправить</string>
+    <string name="text_message">Написать сообщение</string>
+    <string name="copy">Копировать</string>
+    <string name="delete">Удалить</string>
+    <string name="download">Скачать</string>
+    <string name="downloading_image">Загрузка изображения</string>
+    <string name="downloading_image_description">Пожалуйста, подождите...</string>
+    <string name="attach_image">Прикрепить изображение</string>
 </resources>
