@@ -1,5 +1,6 @@
 package com.example.sample.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +12,7 @@ import com.example.sample.R
 import com.example.sample.models.VoiceUser
 
 class VoiceUserAdapter(
-    private val users: List<VoiceUser>
+    private var users: List<VoiceUser> = emptyList()
 ) : RecyclerView.Adapter<VoiceUserAdapter.VoiceUserViewHolder>() {
 
     class VoiceUserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -28,13 +29,23 @@ class VoiceUserAdapter(
 
     override fun onBindViewHolder(holder: VoiceUserViewHolder, position: Int) {
         val user = users[position]
-        holder.userName.text = user.name
-        holder.userStatus.setImageResource(
-            if (user.isSpeaking) R.drawable.ic_speaking else R.drawable.ic_muted
-        )
-        holder.userVolume.progress = user.volumeLevel
-        holder.userVolume.visibility = if (user.isSpeaking) View.VISIBLE else View.GONE
+        with(holder) {
+            userName.text = user.name
+            userStatus.setImageResource(
+                if (user.isSpeaking) R.drawable.ic_speaking else R.drawable.ic_muted
+            )
+
+            userVolume.progress = user.volumeLevel
+            userVolume.visibility = if (user.isSpeaking) View.VISIBLE else View.INVISIBLE
+        }
     }
 
     override fun getItemCount(): Int = users.size
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateUsers(newUsers: List<VoiceUser>) {
+        users = newUsers
+        notifyDataSetChanged()
+    }
+
 }

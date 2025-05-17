@@ -9,10 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Switch
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.example.sample.R
+import com.example.sample.utils.AuthManager
 import androidx.core.content.edit
+import com.example.sample.MainActivity
 
 class SettingsFragment : Fragment() {
 
@@ -23,9 +26,7 @@ class SettingsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Инициализируем SharedPreferences
         sharedPreferences = requireActivity().getPreferences(Context.MODE_PRIVATE)
-
         return inflater.inflate(R.layout.fragment_settings, container, false)
     }
 
@@ -44,19 +45,19 @@ class SettingsFragment : Fragment() {
         // Обработчик уведомлений
         notificationsSwitch.setOnCheckedChangeListener { _, isChecked ->
             sharedPreferences.edit { putBoolean("notifications_enabled", isChecked) }
-            // Здесь можно добавить логику включения/выключения уведомлений
+            showToast(if (isChecked) "Уведомления включены" else "Уведомления выключены")
         }
 
         // Обработчик темы
         darkModeSwitch.setOnCheckedChangeListener { _, isChecked ->
             setDarkMode(isChecked)
-            requireActivity().recreate() // Перезагружаем активити для применения темы
+            showToast(if (isChecked) "Темная тема включена" else "Темная тема выключена")
+            requireActivity().recreate()
         }
 
         // Обработчик выхода
         logoutButton.setOnClickListener {
-            // Реализуйте логику выхода
-            // Например: (activity as? MainActivity)?.logout()
+            (activity as? MainActivity)?.logout()
         }
     }
 
@@ -65,13 +66,14 @@ class SettingsFragment : Fragment() {
     }
 
     private fun setDarkMode(enabled: Boolean) {
-        // Сохраняем настройку
         sharedPreferences.edit { putBoolean("dark_theme_enabled", enabled) }
-
-        // Устанавливаем тему
         AppCompatDelegate.setDefaultNightMode(
             if (enabled) AppCompatDelegate.MODE_NIGHT_YES
             else AppCompatDelegate.MODE_NIGHT_NO
         )
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 }

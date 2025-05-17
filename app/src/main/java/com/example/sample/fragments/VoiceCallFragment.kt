@@ -26,8 +26,10 @@ class VoiceCallFragment : Fragment() {
     private lateinit var audioManager: AudioManager
     private lateinit var prefs: SharedPreferences
     private lateinit var adapter: VoiceUserAdapter
+    private lateinit var channelId: String
+    private lateinit var channelName: String
 
-    private val users = mutableListOf(
+    private val demoUsers = mutableListOf(
         VoiceUser("1", "Алексей", true, 75),
         VoiceUser("2", "Мария", false, 0),
         VoiceUser("3", "Иван", true, 45)
@@ -35,8 +37,9 @@ class VoiceCallFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Инициализируем prefs в onCreate
         prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        channelId = arguments?.getString("channelId") ?: "1"
+        channelName = arguments?.getString("channelName") ?: "Голосовой канал"
     }
 
     override fun onCreateView(
@@ -52,47 +55,41 @@ class VoiceCallFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val channelName = arguments?.getString("channelName") ?: "Голосовой канал"
         binding.channelName.text = channelName
 
-        loadAudioSettings() // prefs инициализирован
-        setupRecyclerView()
+        setupUI()
+        loadAudioSettings()
         setupCallControls()
-        startVolumeMonitoring()
-        simulateUserActivity()
+
+        if (channelId == "3") {
+            setupDemoUsers()
+            startUserActivitySimulation()
+        }
     }
 
-    private fun loadAudioSettings() {
-        val inputVol = prefs.getInt("input_volume", 50)
-        val outputVol = prefs.getInt("output_volume", 50)
-        applyAudioSettings(inputVol, outputVol)
-    }
-
-    private fun setupRecyclerView() {
-        adapter = VoiceUserAdapter(users)
+    private fun setupUI() {
+        adapter = VoiceUserAdapter(emptyList())
         binding.usersRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = this@VoiceCallFragment.adapter
             setHasFixedSize(true)
+            adapter = this@VoiceCallFragment.adapter
         }
+
+        updateConnectionState()
+    }
+
+    private fun setupDemoUsers() {
+        adapter.updateUsers(demoUsers)
+        binding.usersRecyclerView.visibility = View.VISIBLE
     }
 
     private fun setupCallControls() {
-        updateConnectionState()
-
         binding.callAction.setOnClickListener {
-            isConnected = !isConnected
-            updateConnectionState()
-            if (isConnected) {
-                startVolumeMonitoring()
-            } else {
-                stopVolumeMonitoring()
-            }
+            toggleConnection()
         }
 
         binding.endCallButton.setOnClickListener {
-            stopVolumeMonitoring()
-            findNavController().navigateUp()
+            endCall()
         }
 
         binding.settingsButton.setOnClickListener {
@@ -100,12 +97,39 @@ class VoiceCallFragment : Fragment() {
         }
     }
 
+    private fun toggleConnection() {
+        isConnected = !isConnected
+        updateConnectionState()
+
+        if (isConnected) {
+            startVolumeMonitoring()
+        } else {
+            stopVolumeMonitoring()
+        }
+    }
+
     private fun updateConnectionState() {
         binding.callAction.setImageResource(
             if (isConnected) R.drawable.ic_mic_on else R.drawable.ic_mic_off
         )
-        binding.connectionStatus.text = if (isConnected) "Подключено" else "Отключено"
+        binding.connectionStatus.text =
+            if (isConnected) "Подключено к \"$channelName\"" else "Отключено"
         binding.volumeIndicator.visibility = if (isConnected) View.VISIBLE else View.GONE
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun startUserActivitySimulation() {
+        CoroutineScope(Dispatchers.Main).launch {
+            while (isActive && channelId == "3") {
+                delay(3000)
+                demoUsers.forEachIndexed { index, user ->
+                    if (user.isSpeaking) {
+                        demoUsers[index] = user.copy(volumeLevel = (10..100).random())
+                    }
+                }
+                adapter.notifyDataSetChanged()
+            }
+        }
     }
 
     private fun startVolumeMonitoring() {
@@ -127,19 +151,9 @@ class VoiceCallFragment : Fragment() {
         volumeJob = null
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    private fun simulateUserActivity() {
-        CoroutineScope(Dispatchers.Main).launch {
-            while (isActive) {
-                delay(3000)
-                users.forEachIndexed { index, user ->
-                    if (user.isSpeaking) {
-                        users[index] = user.copy(volumeLevel = (10..100).random())
-                    }
-                }
-                adapter.notifyDataSetChanged()
-            }
-        }
+    private fun endCall() {
+        stopVolumeMonitoring()
+        findNavController().navigateUp()
     }
 
     private fun showAudioSettings() {
@@ -150,6 +164,12 @@ class VoiceCallFragment : Fragment() {
             saveAudioSettings(inputVol, outputVol)
             applyAudioSettings(inputVol, outputVol)
         }.show(childFragmentManager, "audio_settings")
+    }
+
+    private fun loadAudioSettings() {
+        val inputVol = prefs.getInt("input_volume", 50)
+        val outputVol = prefs.getInt("output_volume", 50)
+        applyAudioSettings(inputVol, outputVol)
     }
 
     private fun saveAudioSettings(inputVolume: Int, outputVolume: Int) {

@@ -4,11 +4,10 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/chatFragment">
 
-    <!-- Основные фрагменты для нижнего меню -->
     <fragment
         android:id="@+id/chatFragment"
         android:name="com.example.sample.fragments.ChatFragment"
-        android:label="Чаты"
+        android:label="@string/chats"
         tools:layout="@layout/fragment_chat">
 
         <action
@@ -19,7 +18,7 @@
     <fragment
         android:id="@+id/voiceFragment"
         android:name="com.example.sample.fragments.VoiceChannelFragment"
-        android:label="Голос"
+        android:label="@string/voice"
         tools:layout="@layout/fragment_voice_channel">
 
         <action
@@ -30,14 +29,13 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.sample.fragments.SettingsFragment"
-        android:label="Настройки"
+        android:label="@string/settings"
         tools:layout="@layout/fragment_settings" />
 
-    <!-- Детальные фрагменты -->
     <fragment
         android:id="@+id/chatDetailFragment"
         android:name="com.example.sample.fragments.ChatDetailFragment"
-        android:label="Детали чата"
+        android:label="@string/details_chat"
         tools:layout="@layout/fragment_chat_detail">
 
         <argument
@@ -49,7 +47,7 @@
     <fragment
         android:id="@+id/voiceCallFragment"
         android:name="com.example.sample.fragments.VoiceCallFragment"
-        android:label="Звонок"
+        android:label="@string/call"
         tools:layout="@layout/fragment_voice_call">
 
         <argument

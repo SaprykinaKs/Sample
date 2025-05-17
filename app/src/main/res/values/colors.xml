@@ -14,4 +14,5 @@
     <color name="unread_badge">#FF4285F4</color>
     <color name="message_incoming">#FFEDEDED</color>
     <color name="message_outgoing">#FFDCF8C6</color>
+
 </resources>

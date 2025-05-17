@@ -17,7 +17,6 @@
     <string name="connected">Подключено</string>
     <string name="disconnected">Отключено</string>
     <string name="end_call">Завершить</string>
-    <string name="audio_settings">Настройки аудио</string>
     <string name="input_volume">Громкость микрофона</string>
     <string name="output_volume">Громкость динамиков</string>
     <string name="settings">Настройки</string>
@@ -25,5 +24,16 @@
     <string name="dark_theme">Темная тема</string>
     <string name="exit">Выйти</string>
     <string name="chats">Чаты</string>
+    <string name="call">Звонок</string>
     <string name="voice">Голос</string>
+    <string name="details_chat">Детали чата</string>
+    <string name="registration">Регистрация</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="pass_confirm">Подтвердите пароль</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="login1">Войти</string>
+    <string name="create_acc">Создать аккаунт</string>
+    <string name="entrance">Вход</string>
+
 </resources>
