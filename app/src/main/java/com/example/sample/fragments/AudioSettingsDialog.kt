@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
+import com.example.sample.R
 import com.example.sample.databinding.DialogAudioSettingsBinding
 
 class AudioSettingsDialog(
@@ -22,14 +23,14 @@ class AudioSettingsDialog(
 
         return AlertDialog.Builder(requireContext())
             .setView(binding.root)
-            .setTitle("Настройки аудио")
-            .setPositiveButton("Сохранить") { _, _ ->
+            .setTitle(R.string.audio_settings_title)
+            .setPositiveButton(R.string.save_button) { _, _ ->
                 onSettingsSaved(
                     binding.inputVolume.progress,
                     binding.outputVolume.progress
                 )
             }
-            .setNegativeButton("Отмена", null)
+            .setNegativeButton(R.string.cancel_button, null)
             .create()
     }
 }

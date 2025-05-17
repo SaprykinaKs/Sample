@@ -41,15 +41,13 @@ class ChatAdapter(
 
         holder.chatName.text = chat.name
         holder.lastMessage.text = chat.lastMessage
-        holder.chatIcon.contentDescription = "Аватар чата ${chat.name}"
+        holder.chatIcon.context.getString(R.string.chat_avatar_description, chat.name)
 
-        // Загрузка аватара
         Glide.with(holder.itemView.context)
             .load(chat.avatarUrl ?: getDefaultAvatar(chat))
             .circleCrop()
             .into(holder.chatIcon)
 
-        // Отображение непрочитанных сообщений
         if (chat.unreadCount > 0) {
             holder.unreadCount.visibility = View.VISIBLE
             holder.unreadCount.text = chat.unreadCount.toString()
@@ -57,12 +55,10 @@ class ChatAdapter(
             holder.unreadCount.visibility = View.GONE
         }
 
-        // Индикатор типа чата
         holder.chatTypeIndicator.setBackgroundColor(
             ContextCompat.getColor(holder.itemView.context, getColorForChatType(chat.chatType))
         )
 
-        // Отображение времени
         holder.timestamp.text = formatTimestamp(chat.timestamp)
 
         holder.itemView.setOnClickListener { onItemClick(chat) }
@@ -72,7 +68,7 @@ class ChatAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateData(newChats: List<Chat>) {
-        if (chats == newChats) return // Не обновлять если данные те же
+        if (chats == newChats) return
         chats = newChats.sortedByDescending { it.timestamp }
         notifyDataSetChanged()
     }

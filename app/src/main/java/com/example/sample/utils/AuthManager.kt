@@ -29,7 +29,7 @@ object AuthManager {
         val accounts = getAccounts(context).toMutableList()
 
         if (accounts.any { it.username == username }) {
-            return false // Пользователь уже существует
+            return false
         }
 
         accounts.add(UserAccount(username, password))

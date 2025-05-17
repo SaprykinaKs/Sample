@@ -36,4 +36,25 @@
     <string name="create_acc">Создать аккаунт</string>
     <string name="entrance">Вход</string>
 
+<!--kotlin-->
+    <string name="chat_avatar_description">Аватар чата %s</string>
+    <string name="copied_message">Скопировано</string>
+    <string name="online_members_count">%d участников</string>
+    <string name="audio_settings_title">Настройки аудио</string>
+    <string name="save_button">Сохранить</string>
+    <string name="cancel_button">Отмена</string>
+    <string name="notifications_enabled">Уведомления включены</string>
+    <string name="notifications_disabled">Уведомления выключены</string>
+    <string name="dark_theme_enabled">Темная тема включена</string>
+    <string name="dark_theme_disabled">Темная тема выключена</string>
+    <string name="default_channel_name">Голосовой канал</string>
+    <string name="connection_status_connected">Подключено к \"%1$s\"</string>
+    <string name="connection_status_disconnected">Отключено</string>
+    <string name="error_fill_all_fields">Заполните все поля</string>
+    <string name="error_wrong_credentials">Неверный логин или пароль</string>
+    <string name="error_empty_fields">Заполните все поля</string>
+    <string name="error_password_mismatch">Пароли не совпадают</string>
+    <string name="success_account_created">Аккаунт создан</string>
+    <string name="error_user_exists">Пользователь уже существует</string>
+
 </resources>

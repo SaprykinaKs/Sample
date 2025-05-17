@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Проверка авторизации
         if (!AuthManager.isLoggedIn(this)) {
             startLoginActivity()
             return
@@ -29,7 +28,6 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
-        // Настройка нижней навигации
         binding.bottomNavigation.setupWithNavController(navController)
 
         binding.bottomNavigation.setOnItemSelectedListener { item ->

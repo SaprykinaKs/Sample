@@ -29,7 +29,10 @@ class VoiceChannelAdapter(
     override fun onBindViewHolder(holder: VoiceChannelViewHolder, position: Int) {
         val channel = channels[position]
         holder.channelName.text = channel.name
-        holder.usersOnline.text = "${channel.usersOnline} участников"
+        holder.usersOnline.text = holder.itemView.context.getString(
+            R.string.online_members_count,
+            channel.usersOnline
+        )
         holder.itemView.setOnClickListener { onItemClick(channel) }
     }
 

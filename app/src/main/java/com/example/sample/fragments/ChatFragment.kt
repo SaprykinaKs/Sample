@@ -20,8 +20,8 @@ class ChatFragment : Fragment() {
     private var _binding: FragmentChatBinding? = null
     private val binding get() = _binding!!
     private lateinit var chatAdapter: ChatAdapter
-    private var allChats: List<Chat> = emptyList() // Полный список чатов
-    private var filteredChats: List<Chat> = emptyList() // Отфильтрованный список
+    private var allChats: List<Chat> = emptyList()
+    private var filteredChats: List<Chat> = emptyList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,8 +45,8 @@ class ChatFragment : Fragment() {
             Chat("4", "Новости компании", "Новый релиз!", System.currentTimeMillis() - 86400000,
                 5, ChatType.CHANNEL, "https://example.com/news.jpg")
         )
-        allChats = chats // Инициализируем основной список
-        filteredChats = allChats.toList() // Создаем копию
+        allChats = chats
+        filteredChats = allChats.toList()
 
         chatAdapter = ChatAdapter(chats) { chat ->
             findNavController().navigate(
@@ -62,7 +62,6 @@ class ChatFragment : Fragment() {
             adapter = chatAdapter
         }
 
-        // Настройка поиска
         binding.searchInput.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 filterChats(s.toString())
@@ -71,7 +70,6 @@ class ChatFragment : Fragment() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
 
-        // Настройка фильтров по типам чатов
         binding.filterPersonal.setOnClickListener { filterByType(ChatType.PERSONAL) }
         binding.filterGroup.setOnClickListener { filterByType(ChatType.GROUP) }
         binding.filterChannel.setOnClickListener { filterByType(ChatType.CHANNEL) }
@@ -80,7 +78,7 @@ class ChatFragment : Fragment() {
 
     private fun filterChats(query: String) {
         val filtered = if (query.isEmpty()) {
-            allChats // Если поисковый запрос пуст, показываем все чаты
+            allChats
         } else {
             allChats.filter {
                 it.name.contains(query, ignoreCase = true) ||

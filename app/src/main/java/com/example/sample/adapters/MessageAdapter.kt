@@ -63,7 +63,7 @@ class MessageAdapter(
             val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as? ClipboardManager
             clipboard?.let {
                 it.setPrimaryClip(ClipData.newPlainText("message", text))
-                Toast.makeText(context, "Скопировано", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.copied_message, Toast.LENGTH_SHORT).show()
             }
         }
     }

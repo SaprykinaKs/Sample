@@ -44,7 +44,7 @@ class ChatDetailFragment : Fragment() {
 
                     val imageMessage = Message(
                         id = System.currentTimeMillis().toString(),
-                        text = "", // Пустой текст для изображения
+                        text = "",
                         timestamp = Date().time,
                         senderId = "me",
                         senderName = "Я",
@@ -55,9 +55,9 @@ class ChatDetailFragment : Fragment() {
                     )
 
                     viewModel.sendMessage(imageMessage)
-                } ?: showError("Не удалось загрузить изображение")
+                } ?: showError("Failed to load image")
             } catch (e: Exception) {
-                showError("Ошибка: ${e.message ?: "неизвестная ошибка"}")
+                showError("Error: ${e.message}")
             }
         }
     }
@@ -90,7 +90,7 @@ class ChatDetailFragment : Fragment() {
                 out.flush()
             }
         } catch (e: IOException) {
-            throw IOException("Не удалось сохранить изображение", e)
+            throw IOException("Failed to save image", e)
         }
     }
 
@@ -161,15 +161,14 @@ class ChatDetailFragment : Fragment() {
             (requireContext().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager)
                 .enqueue(request)
 
-            showMessage("Загрузка начата")
+            showMessage("Loading started")
         } catch (e: Exception) {
-            showError("Ошибка загрузки: ${e.message}")
+            showError("Loading error: ${e.message}")
         }
     }
 
     private fun showFullScreenImage(imageUrl: String) {
-        // реализация полноэкранного просмотра изображения
-        showMessage("Просмотр изображения: $imageUrl")
+        showMessage("View image: $imageUrl")
     }
 
     private fun showMessage(message: String) {

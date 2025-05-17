@@ -20,7 +20,7 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.passwordEditText.text.toString()
 
             if (username.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Заполните все поля", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.error_fill_all_fields, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -28,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             } else {
-                Toast.makeText(this, "Неверный логин или пароль", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.error_wrong_credentials, Toast.LENGTH_SHORT).show()
             }
         }
 

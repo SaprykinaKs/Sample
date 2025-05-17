@@ -20,20 +20,20 @@ class RegisterActivity : AppCompatActivity() {
             val confirmPassword = binding.confirmPasswordEditText.text.toString()
 
             if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-                Toast.makeText(this, "Заполните все поля", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.error_empty_fields, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             if (password != confirmPassword) {
-                Toast.makeText(this, "Пароли не совпадают", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.error_password_mismatch, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             if (AuthManager.register(this, username, password)) {
-                Toast.makeText(this, "Аккаунт создан", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.success_account_created, Toast.LENGTH_SHORT).show()
                 finish()
             } else {
-                Toast.makeText(this, "Пользователь уже существует", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.error_user_exists, Toast.LENGTH_SHORT).show()
             }
         }
     }

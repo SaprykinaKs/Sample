@@ -39,7 +39,7 @@ class VoiceCallFragment : Fragment() {
         super.onCreate(savedInstanceState)
         prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
         channelId = arguments?.getString("channelId") ?: "1"
-        channelName = arguments?.getString("channelName") ?: "Голосовой канал"
+        channelName = arguments?.getString("channelName") ?: getString(R.string.default_channel_name)
     }
 
     override fun onCreateView(
@@ -113,7 +113,11 @@ class VoiceCallFragment : Fragment() {
             if (isConnected) R.drawable.ic_mic_on else R.drawable.ic_mic_off
         )
         binding.connectionStatus.text =
-            if (isConnected) "Подключено к \"$channelName\"" else "Отключено"
+            if (isConnected) {
+                getString(R.string.connection_status_connected, channelName)
+            } else {
+                getString(R.string.connection_status_disconnected)
+            }
         binding.volumeIndicator.visibility = if (isConnected) View.VISIBLE else View.GONE
     }
 

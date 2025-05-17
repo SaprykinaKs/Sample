@@ -13,7 +13,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.example.sample.R
-import com.example.sample.utils.AuthManager
 import androidx.core.content.edit
 import com.example.sample.MainActivity
 
@@ -38,24 +37,20 @@ class SettingsFragment : Fragment() {
         val darkModeSwitch = view.findViewById<Switch>(R.id.dark_mode_switch)
         val logoutButton = view.findViewById<Button>(R.id.logout_button)
 
-        // Загружаем сохраненные настройки
         notificationsSwitch.isChecked = sharedPreferences.getBoolean("notifications_enabled", true)
         darkModeSwitch.isChecked = isDarkThemeEnabled()
 
-        // Обработчик уведомлений
         notificationsSwitch.setOnCheckedChangeListener { _, isChecked ->
             sharedPreferences.edit { putBoolean("notifications_enabled", isChecked) }
-            showToast(if (isChecked) "Уведомления включены" else "Уведомления выключены")
+            showToast((if (isChecked) R.string.notifications_enabled else R.string.notifications_disabled).toString())
         }
 
-        // Обработчик темы
         darkModeSwitch.setOnCheckedChangeListener { _, isChecked ->
             setDarkMode(isChecked)
-            showToast(if (isChecked) "Темная тема включена" else "Темная тема выключена")
+            showToast((if (isChecked) R.string.dark_theme_enabled else R.string.dark_theme_disabled).toString())
             requireActivity().recreate()
         }
 
-        // Обработчик выхода
         logoutButton.setOnClickListener {
             (activity as? MainActivity)?.logout()
         }

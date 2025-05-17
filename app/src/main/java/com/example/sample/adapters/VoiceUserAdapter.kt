@@ -47,5 +47,4 @@ class VoiceUserAdapter(
         users = newUsers
         notifyDataSetChanged()
     }
-
 }
