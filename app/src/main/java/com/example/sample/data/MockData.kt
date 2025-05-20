@@ -57,8 +57,8 @@ object MockData {
 
     // VoiceCallFragment
     val demoVoiceUsers = mutableListOf(
-        VoiceUser("1", "Алексей", true, 75),
-        VoiceUser("2", "Мария", false, 0),
-        VoiceUser("3", "Иван", true, 45)
+        VoiceUser("1", "Соня", true, 75),
+        VoiceUser("2", "Костя", false, 0),
+        VoiceUser("3", "Матвей", true, 45)
     )
 }
