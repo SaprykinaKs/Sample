@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sample.R
 import com.example.sample.databinding.FragmentVoiceChannelBinding
 import com.example.sample.adapters.VoiceChannelAdapter
-import com.example.sample.models.VoiceChannel
+import com.example.sample.data.MockData
 
 class VoiceChannelFragment : Fragment() {
 
@@ -29,14 +29,8 @@ class VoiceChannelFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val channels = listOf(
-            VoiceChannel("1", "Общий канал", 5),
-            VoiceChannel("2", "Музыка", 2),
-            VoiceChannel("3", "Игры", 3)
-        )
-
         binding.voiceChannelRecyclerView.layoutManager = LinearLayoutManager(context)
-        binding.voiceChannelRecyclerView.adapter = VoiceChannelAdapter(channels) { channel ->
+        binding.voiceChannelRecyclerView.adapter = VoiceChannelAdapter(MockData.voiceChannels) { channel ->
             findNavController().navigate(
                 R.id.action_voice_to_call,
                 Bundle().apply {

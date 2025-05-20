@@ -1,13 +1,20 @@
 package com.example.sample
 
+import android.content.Context
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sample.databinding.ActivityRegisterBinding
 import com.example.sample.utils.AuthManager
+import com.example.sample.utils.LocaleUtils
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
+
+    override fun attachBaseContext(newBase: Context) {
+        val lang = LocaleUtils.getSavedLanguage(newBase)
+        super.attachBaseContext(LocaleUtils.wrapContext(newBase, lang))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +27,7 @@ class RegisterActivity : AppCompatActivity() {
             val confirmPassword = binding.confirmPasswordEditText.text.toString()
 
             if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-                Toast.makeText(this, R.string.error_empty_fields, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.error_fill_all_fields, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 

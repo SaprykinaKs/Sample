@@ -56,4 +56,12 @@
         android:layout_height="wrap_content"
         android:text="@string/create_acc"
         style="@style/Widget.MaterialComponents.Button.TextButton"/>
+
+    <Button
+        android:id="@+id/language_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/change_language" />
+
 </LinearLayout>

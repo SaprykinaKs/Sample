@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sample.R
 import com.example.sample.adapters.VoiceUserAdapter
 import com.example.sample.databinding.FragmentVoiceCallBinding
-import com.example.sample.models.VoiceUser
+import com.example.sample.data.MockData
 import kotlinx.coroutines.*
 
 class VoiceCallFragment : Fragment() {
@@ -28,12 +28,6 @@ class VoiceCallFragment : Fragment() {
     private lateinit var adapter: VoiceUserAdapter
     private lateinit var channelId: String
     private lateinit var channelName: String
-
-    private val demoUsers = mutableListOf(
-        VoiceUser("1", "Алексей", true, 75),
-        VoiceUser("2", "Мария", false, 0),
-        VoiceUser("3", "Иван", true, 45)
-    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,7 +73,7 @@ class VoiceCallFragment : Fragment() {
     }
 
     private fun setupDemoUsers() {
-        adapter.updateUsers(demoUsers)
+        adapter.updateUsers(MockData.demoVoiceUsers)
         binding.usersRecyclerView.visibility = View.VISIBLE
     }
 
@@ -126,9 +120,9 @@ class VoiceCallFragment : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             while (isActive && channelId == "3") {
                 delay(3000)
-                demoUsers.forEachIndexed { index, user ->
+                MockData.demoVoiceUsers.forEachIndexed { index, user ->
                     if (user.isSpeaking) {
-                        demoUsers[index] = user.copy(volumeLevel = (10..100).random())
+                        MockData.demoVoiceUsers[index] = user.copy(volumeLevel = (10..100).random())
                     }
                 }
                 adapter.notifyDataSetChanged()

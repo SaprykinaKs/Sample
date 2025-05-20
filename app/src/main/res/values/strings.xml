@@ -52,9 +52,14 @@
     <string name="connection_status_disconnected">Отключено</string>
     <string name="error_fill_all_fields">Заполните все поля</string>
     <string name="error_wrong_credentials">Неверный логин или пароль</string>
-    <string name="error_empty_fields">Заполните все поля</string>
     <string name="error_password_mismatch">Пароли не совпадают</string>
     <string name="success_account_created">Аккаунт создан</string>
     <string name="error_user_exists">Пользователь уже существует</string>
+
+    <string name="select_language">Выберите язык</string>
+    <string name="russian">Русский</string>
+    <string name="english">English</string>
+    <string name="change_language">Изменить язык</string>
+    <string name="cancel">Отмена</string>
 
 </resources>

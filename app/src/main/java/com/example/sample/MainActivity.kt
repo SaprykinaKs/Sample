@@ -1,5 +1,6 @@
 package com.example.sample
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -8,10 +9,16 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.sample.databinding.ActivityMainBinding
 import com.example.sample.utils.AuthManager
+import com.example.sample.utils.LocaleUtils
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+
+    override fun attachBaseContext(newBase: Context) {
+        val lang = LocaleUtils.getSavedLanguage(newBase)
+        super.attachBaseContext(LocaleUtils.wrapContext(newBase, lang))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
